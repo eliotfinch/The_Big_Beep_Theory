@@ -1,0 +1,56 @@
+name: Update figures
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Convert
+      run: jupyter nbconvert --to python notebooks/counts_over_time.ipynb
+      
+    - name: Run
+      run: python notebooks/counts_over_time.py
+      
+    - name: Move
+      run: mkdir github_artifacts && mv notebooks/figures/cumulative_beep_count_per_obs.png github_artifacts
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: main
+        path: github_artifacts
+
+  deploy:
+
+    needs: [build]
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v3.0.2
+      with:
+        path: github_artifacts
+        
+    - name: Move
+      run: mkdir github_deploy && mv github_artifacts/main/cumulative_beep_count_per_obs.png github_deploy
+      
+    - name: Deploy on New Branch
+      uses: peaceiris/actions-github-pages@v3.1.12
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: github_deploy
+        publish_branch: build
+        force_orphan: true
