@@ -17,11 +17,17 @@ jobs:
     - name: Install
       run: python -m pip install pip && python -m pip install matplotlib && pip install jupyterlab
       
+    - name: Change Directory
+      run: cd notebooks
+      
     - name: Convert
-      run: jupyter nbconvert --to python notebooks/counts_over_time.ipynb
+      run: jupyter nbconvert --to python counts_over_time.ipynb
       
     - name: Run
-      run: python notebooks/counts_over_time.py
+      run: python counts_over_time.py
+      
+    - name: Change Directory
+      run: cd ../
       
     - name: Move
       run: mkdir github_artifacts && mv notebooks/figures/cumulative_beep_count_per_obs.png github_artifacts
