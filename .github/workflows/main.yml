@@ -17,9 +17,6 @@ jobs:
     - name: Install
       run: python -m pip install pip && python -m pip install matplotlib && pip install jupyterlab
       
-    - name: Convert
-      run: jupyter nbconvert --to python notebooks/counts_over_time.ipynb
-      
     - name: Run
       run: python notebooks/counts_over_time.py
       
