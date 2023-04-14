@@ -4,7 +4,7 @@ from pathlib import Path
 # The date of the first beep entry
 ref_date = datetime.datetime(2022, 5, 9)
 
-data_path = Path('../data/The Big Beep Theory - BEEP.csv')
+data_path = Path('../data/The Big Beep Theory - BEEP.csv').absolute()
 
 def read_data(absolute_dates=False, absolute_times=False):    
     """
