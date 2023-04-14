@@ -1,18 +1,17 @@
 import datetime
-from pathlib import Path
 
 # The date of the first beep entry
 ref_date = datetime.datetime(2022, 5, 9)
 
-data_path = Path('../data/The Big Beep Theory - BEEP.csv').resolve()
-
-def read_data(absolute_dates=False, absolute_times=False):    
+def read_data(data_path, absolute_dates=False, absolute_times=False):    
     """
     Read the CSV beep data into a dictionary. Keys are the dates. Entries are
     a list of (time, observer) tuples. Notes are currently ignored.
 
     Parameters
     ----------
+    data_path : path-like object
+        The path to the data .csv.
     absolute_dates : bool, optional
         If True, dates are expressed as a number of days since the first entry. 
         The default is False.
