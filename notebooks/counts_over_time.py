@@ -130,6 +130,11 @@ for day in np.arange(ax.get_xticks()[1], ax.get_xticks()[-1]):
         tick_locs.append(day)
         months.append(m)
         
+# Move the first tick to the start of the month
+tick_date = ref_date + datetime.timedelta(days=tick_locs[0])
+adjusted_tick_loc = (datetime.datetime(tick_date.year, tick_date.month, 1) - ref_date).days
+tick_locs[0] = adjusted_tick_loc
+        
 ax.set_xticks(ticks=tick_locs, labels=months)
 
 ax.legend()
