@@ -8,6 +8,7 @@ from pathlib import Path
 from utils import ref_date, read_data
 
 script_path = Path(__file__).parent
+print(script_path)
 
 data_path = script_path / '../data/The Big Beep Theory - BEEP.csv' 
 out_path = script_path / 'figures'
