@@ -15,7 +15,10 @@ out_path = script_path / 'figures'
 
 working_path = Path.cwd()
 
-data = read_data(data_path.relative_to(working_path), absolute_dates=True)
+#%%
+
+# data = read_data(data_path.relative_to(working_path), absolute_dates=True)
+data = read_data(data_path, absolute_dates=True)
 
 days = []
 counts = []
