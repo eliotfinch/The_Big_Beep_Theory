@@ -8,16 +8,12 @@ from pathlib import Path
 from utils import ref_date, read_data
 
 script_path = Path(__file__).parent
-print(script_path)
 
 data_path = script_path / '../data/The Big Beep Theory - BEEP.csv' 
 out_path = script_path / 'figures'
 
 working_path = Path.cwd()
 
-#%%
-
-# data = read_data(data_path.relative_to(working_path), absolute_dates=True)
 data = read_data(data_path, absolute_dates=True)
 
 days = []
@@ -60,7 +56,7 @@ ax.set_xticks(ticks=tick_locs[1:], labels=months[1:])
 ax.grid(axis='y')
 
 fig.savefig(
-    out_path.relative_to(working_path) / 'cumulative_beep_count.png', 
+    out_path / 'cumulative_beep_count.png', 
     facecolor='w', 
     bbox_inches='tight', 
     dpi=180
@@ -145,7 +141,7 @@ ax.legend()
 ax.grid(axis='y')
 
 fig.savefig(
-    out_path.relative_to(working_path) / 'cumulative_beep_count_per_obs.png', 
+    out_path / 'cumulative_beep_count_per_obs.png', 
     facecolor='w', 
     bbox_inches='tight', 
     dpi=180
